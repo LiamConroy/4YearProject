@@ -11,8 +11,10 @@ public class RightLever : MonoBehaviour
     public float angle;
     public JointLimits limit;
 
-    public bool bw;
-    public bool fw;
+    public static bool bw;
+    public static bool fw;
+
+    public static bool dir;
     // public float startAngle = 0.3174578f;
 
     // Start is called before the first frame update
@@ -36,17 +38,17 @@ public class RightLever : MonoBehaviour
 
     public void direction(){
         if(angle <= limit.min){
-            bw = true;
-            fw = false;
-
-            Debug.Log("backwards" + bw);
+            // bw = true;
+            // fw = false;
+            dir = false;
+            // Debug.Log("backwards" + bw);
         }
 
         if(angle >= limit.max){
-            bw = false;
-            fw = true;
-            
-            Debug.Log("forwards" + fw);
+            // bw = false;
+            // fw = true;
+            dir = true;
+            // Debug.Log("forwards" + fw);
         }
     }
 }
