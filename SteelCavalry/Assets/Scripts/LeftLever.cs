@@ -16,10 +16,15 @@ public class LeftLever : MonoBehaviour
     public static bool bw;
     public static bool fw;
 
+    public static bool center;
+
+    public static bool grabbed;
+
     public static bool dir;
 
-    public float centerMin = -0.5f;
-    public float centerMax = 0.5f;
+    public float centerMin = -0.1f;
+    public float centerMax = 0.1f;
+
 
     
     // public float startAngle = 0.3174578f;
@@ -45,26 +50,36 @@ public class LeftLever : MonoBehaviour
     }
 
     public void direction(){
+
+     if(!grabbed){
+        if(angle > centerMin && angle < centerMax){
+            // Debug.Log("center");
+            center = true;
+        }
+     }
         if(angle >= limit.min && angle < centerMin){
             bw = true;
             fw = false;
+            center = false;
             // Debug.Log("backwards" + bw);
         }
 
-        if(angle >= limit.max){
+        if(angle <= limit.max && angle > centerMax){
             bw = false;
             fw = true;
+            center = false;
             // Debug.Log("forwards" + fw);
         }
 
-        if(angle >= centerMin && angle <= centerMax){
-            Debug.Log("center");
-        }
+
     }
 
-    public void angleReset(){
-        spring.targetPosition = 0;
-        // Debug.Log("reset");
+    public void held(){
+        grabbed = true;
+    }
+
+    public void released(){
+        grabbed = false;
     }
 }
 

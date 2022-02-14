@@ -24,13 +24,18 @@ public class LeverManager : MonoBehaviour
     }
 
     public void direction(){
-        if(LeftLever.dir == RightLever.dir){
-            // Debug.Log("forward");
+
+        if(LeftLever.center == RightLever.center){
+            Debug.Log("center");
+        }
+
+        if(LeftLever.fw == RightLever.fw){
+            Debug.Log("forward");
             
         }
 
-        if(!LeftLever.dir == !RightLever.dir){
-            // Debug.Log("backward");
+        if(!LeftLever.bw == RightLever.bw){
+            Debug.Log("backward");
         }
 
         // else if(LeftLever.bw && RightLever.fw){
