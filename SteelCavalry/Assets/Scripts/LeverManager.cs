@@ -25,17 +25,25 @@ public class LeverManager : MonoBehaviour
 
     public void direction(){
 
-        if(LeftLever.center == RightLever.center){
-            Debug.Log("center");
+        if((LeftLever.center && RightLever.center) && (!RightLever.grabbed && !LeftLever.grabbed)){
+            // Debug.Log("center");
         }
 
-        if(LeftLever.fw == RightLever.fw){
+        if((LeftLever.fw && RightLever.fw) && (!LeftLever.center && !RightLever.center)){
             Debug.Log("forward");
             
         }
 
-        if(!LeftLever.bw == RightLever.bw){
+        if((LeftLever.bw && RightLever.bw) && (!LeftLever.center && !RightLever.center)){
             Debug.Log("backward");
+        }
+
+        if((LeftLever.fw && RightLever.bw) && (!LeftLever.center && !RightLever.center)){
+            Debug.Log("RightTurn");
+        }
+
+        if((LeftLever.bw && RightLever.fw) && (!LeftLever.center && !RightLever.center)){
+            Debug.Log("LeftTurn");
         }
 
         // else if(LeftLever.bw && RightLever.fw){
@@ -48,6 +56,8 @@ public class LeverManager : MonoBehaviour
 
         else{
             // Debug.Log("Bruh");
-        }          
+        }
+
+        return;          
     }
 }
