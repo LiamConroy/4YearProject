@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
+
+    
     // Start is called before the first frame update
     void OnTriggerEnter(Collider other){
 

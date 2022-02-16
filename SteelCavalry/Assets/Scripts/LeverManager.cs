@@ -20,13 +20,19 @@ public class LeverManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+         Vector3 bruh = new Vector3(x, 0f, z); 
+
         direction();
+
     }
 
     public void direction(){
 
         if((LeftLever.center && RightLever.center) && (!RightLever.grabbed && !LeftLever.grabbed)){
-            // Debug.Log("center");
+           
         }
 
         if((LeftLever.fw && RightLever.fw) && (!LeftLever.center && !RightLever.center)){
