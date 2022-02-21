@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class LeverManager : MonoBehaviour
 {
-
-    // public LeftLever Lf;
-    // public RightLever Rf;
-    // Start is called before the first frame update
-
+    // public Vector3 rotation;
+    public float turnSpeed;
     public GameObject Tank;
     void Start()
     {
@@ -20,11 +17,8 @@ public class LeverManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
 
-         Vector3 bruh = new Vector3(x, 0f, z); 
-
+        //  Vector3 bruh = new Vector3(x, 0f, z); 
         direction();
 
     }
@@ -37,15 +31,18 @@ public class LeverManager : MonoBehaviour
 
         if((LeftLever.fw && RightLever.fw) && (!LeftLever.center && !RightLever.center)){
             Debug.Log("forward");
-            
+            transform.Translate(Vector3.forward * Time.deltaTime, Tank.transform);
         }
 
         if((LeftLever.bw && RightLever.bw) && (!LeftLever.center && !RightLever.center)){
             Debug.Log("backward");
+            transform.Translate(Vector3.back * Time.deltaTime, Tank.transform);
         }
 
         if((LeftLever.fw && RightLever.bw) && (!LeftLever.center && !RightLever.center)){
             Debug.Log("RightTurn");
+            // Vector3 rotateVector = rotation;
+            // transform.Rotate(rotation * Time.deltaTime);
         }
 
         if((LeftLever.bw && RightLever.fw) && (!LeftLever.center && !RightLever.center)){
