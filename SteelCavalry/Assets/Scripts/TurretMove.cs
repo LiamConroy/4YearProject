@@ -74,12 +74,18 @@ public class TurretMove : MonoBehaviour
     }
 
     public void turretMove(){
-        if((fw && !bw) & (!center & grabbed)){
+        Debug.Log("forward" + fw);
+        Debug.Log("backward" + bw);
+        Debug.Log("grabbed" + grabbed);
+        Debug.Log("Center" + center);
+        if((fw && !bw) && (!center && grabbed)){
             turret.transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime, Space.Self);
+            Debug.Log("Right");
         }
 
-        if((!fw && bw) & (!center & grabbed)){
-            turret.transform.Rotate(Vector3.down, rotationSpeed * Time.deltaTime, Space.Self);
+        if((!fw && bw) && (!center && grabbed)){
+            turret.transform.Rotate(Vector3.up, -rotationSpeed * Time.deltaTime, Space.Self);
+            Debug.Log("Left");
         }  
 
       return;
@@ -87,12 +93,12 @@ public class TurretMove : MonoBehaviour
 
     public void held(){
         grabbed = true;
-        Debug.Log(grabbed);
+        // Debug.Log(grabbed);
     }
 
     public void released(){
         grabbed = false;
-        Debug.Log(grabbed);
+        // Debug.Log(grabbed);
     }
 
     public void slowStart(){
