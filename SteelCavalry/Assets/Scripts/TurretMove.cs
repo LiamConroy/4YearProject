@@ -12,8 +12,8 @@ public class TurretMove : MonoBehaviour
 
     public JointSpring spring;
 
-    public static bool bw;
-    public static bool fw;
+    public static bool left;
+    public static bool right;
 
     public static bool center;
 
@@ -27,6 +27,14 @@ public class TurretMove : MonoBehaviour
     public GameObject turret;
 
     public float rotationSpeed = 50f;
+
+    
+
+    Vector3 currentEuler; 
+    
+    float x;
+    float y;
+    float z; 
 
 
     
@@ -58,15 +66,15 @@ public class TurretMove : MonoBehaviour
      }
 
         if(angle >= limit.min && angle < centerMin){
-            bw = true;
-            fw = false;
+            left = true;
+            right = false;
             center = false;
             // Debug.Log("backwards" + bw);
         }
 
         if(angle <= limit.max && angle > centerMax){
-            bw = false;
-            fw = true;
+            left = false;
+            right = true;
             center = false;
             // Debug.Log("forwards" + fw);
         }
@@ -74,17 +82,21 @@ public class TurretMove : MonoBehaviour
     }
 
     public void turretMove(){
-        Debug.Log("forward" + fw);
-        Debug.Log("backward" + bw);
+        Debug.Log("forward" + right);
+        Debug.Log("backward" + left);
         Debug.Log("grabbed" + grabbed);
         Debug.Log("Center" + center);
-        if((fw && !bw) && (!center && grabbed)){
-            turret.transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime, Space.Self);
+        if((right && !left) && (!center && grabbed)){
+            // turret.transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime, Space.World);
+            // Vector3 rotationVector = new Vector3(0,rotationSpeed,0);
+            // Quaternion rotation = Quaternion.Euler(rotationVector);
+            currentEuler += new Vector3(x,rotationSpeed,z) * Time.deltaTime;
+            turret.transform.eulerAngles = currentEuler;
             Debug.Log("Right");
         }
 
-        if((!fw && bw) && (!center && grabbed)){
-            turret.transform.Rotate(Vector3.up, -rotationSpeed * Time.deltaTime, Space.Self);
+        if((!right && left) && (!center && grabbed)){
+            turret.transform.Rotate(Vector3.down, rotationSpeed * Time.deltaTime, Space.World);
             Debug.Log("Left");
         }  
 
