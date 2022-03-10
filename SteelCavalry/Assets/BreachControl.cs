@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BarrelMove : MonoBehaviour
+public class BreachControl : MonoBehaviour
 {
-    // Start is called before the first frame update
     public HingeJoint hinge;
     public float angle;
     public JointLimits limit;
@@ -23,18 +22,10 @@ public class BarrelMove : MonoBehaviour
     public float centerMin = -0.1f;
     public float centerMax = 0.1f;
 
-    public GameObject barrel;
-
-    public float rotationSpeed = 50f;
-
-
-    
-    // public float startAngle = 0.3174578f;
-
     // Start is called before the first frame update
+   
     void Start()
     {
-        barrel = GameObject.Find("GunBody");
         hinge = GetComponent<HingeJoint>();
         limit = hinge.limits;
         spring = hinge.spring;
@@ -42,14 +33,19 @@ public class BarrelMove : MonoBehaviour
 
     void Update()
     {
+        // Debug.Log("Start");
+        // angle();
+        
         angle = hinge.angle;
+        // Debug.Log(limit.min);
+        // Debug.Log(angle);
         direction();
-        turretMove();
+     
     }
 
     public void direction(){
 
-     if(!grabbed){
+        if(!grabbed){
         if(angle > centerMin && angle < centerMax){
             // Debug.Log("center");
             center = true;
@@ -60,45 +56,26 @@ public class BarrelMove : MonoBehaviour
             bw = true;
             fw = false;
             center = false;
-            // Debug.Log("backwards" + bw);
+            // Debug.Log("down" + bw);
+            return;
         }
 
         if(angle <= limit.max && angle > centerMax){
             bw = false;
             fw = true;
             center = false;
-            // Debug.Log("forwards" + fw);
+            // Debug.Log("up" + fw);
+            return;
         }
 
-    }
 
-    public void turretMove(){
-        if((fw && !bw) & (!center & grabbed)){
-            barrel.transform.Rotate(Vector3.left, rotationSpeed * Time.deltaTime, Space.Self);
-        }
-
-        if((!fw && bw) & (!center & grabbed)){
-            barrel.transform.Rotate(Vector3.right, rotationSpeed * Time.deltaTime, Space.Self);
-        }  
-
-      return;
     }
 
     public void held(){
         grabbed = true;
-        // Debug.Log(grabbed);
     }
 
     public void released(){
         grabbed = false;
-        // Debug.Log(grabbed);
-    }
-
-    public void slowStart(){
-        rotationSpeed = 5f;
-    }
-
-    public void slowStop(){
-        rotationSpeed = 20f;
     }
 }

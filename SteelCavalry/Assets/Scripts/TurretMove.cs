@@ -82,22 +82,22 @@ public class TurretMove : MonoBehaviour
     }
 
     public void turretMove(){
-        Debug.Log("forward" + right);
-        Debug.Log("backward" + left);
-        Debug.Log("grabbed" + grabbed);
-        Debug.Log("Center" + center);
+        // Debug.Log("forward" + right);
+        // Debug.Log("backward" + left);
+        // Debug.Log("grabbed" + grabbed);
+        // Debug.Log("Center" + center);
         if((right && !left) && (!center && grabbed)){
             // turret.transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime, Space.World);
             // Vector3 rotationVector = new Vector3(0,rotationSpeed,0);
             // Quaternion rotation = Quaternion.Euler(rotationVector);
             currentEuler += new Vector3(x,rotationSpeed,z) * Time.deltaTime;
             turret.transform.eulerAngles = currentEuler;
-            Debug.Log("Right");
+            // Debug.Log("Right");
         }
 
         if((!right && left) && (!center && grabbed)){
             turret.transform.Rotate(Vector3.down, rotationSpeed * Time.deltaTime, Space.World);
-            Debug.Log("Left");
+            // Debug.Log("Left");
         }  
 
       return;
