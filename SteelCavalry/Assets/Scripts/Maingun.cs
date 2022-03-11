@@ -17,12 +17,6 @@ public class Maingun : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider other){
-        if (other.transform.CompareTag("GameController")){
-        Debug.Log("entered");
-        }
-    }
-
     public void loaded(){
     
         ammoLoaded = true;

@@ -16,10 +16,12 @@ public class Fire : MonoBehaviour
     
     void OnTriggerEnter(Collider other){
 
-    if((Maingun.ammoLoaded) && (BreachControl.fw && !BreachControl.bw)){
+    if((Maingun.ammoLoaded && RoundDetection.shell.transform.CompareTag("Loaded")) && (BreachControl.fw && !BreachControl.bw)){
         if (other.transform.CompareTag("GameController") && (!fired)){
         Debug.Log("Pew");
         fired = true;
+        // RoundDetection.shell = RoundDetection.shell.gameObject.tag = "Spent";
+        RoundDetection.shell.gameObject.tag = "Spent";
         }
     }
     }
