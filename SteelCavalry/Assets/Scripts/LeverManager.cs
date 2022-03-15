@@ -6,7 +6,7 @@ public class LeverManager : MonoBehaviour
 {
     // public Vector3 rotation;
     public float turnSpeed;
-    public GameObject Tank;
+    public static GameObject Tank;
     public float rotationSpeed = 5000f;
     public Quaternion start;
     void Start()
@@ -33,12 +33,12 @@ public class LeverManager : MonoBehaviour
         }
 
         if((LeftLever.fw && RightLever.fw) && (!LeftLever.center && !RightLever.center)){
-            Debug.Log("forward");
+            // Debug.Log("forward");
             transform.Translate(Vector3.forward * Time.deltaTime, Tank.transform);
         }
 
         if((LeftLever.bw && RightLever.bw) && (!LeftLever.center && !RightLever.center)){
-            Debug.Log("backward");
+            // Debug.Log("backward");
             transform.Translate(Vector3.back * Time.deltaTime, Tank.transform);
         }
 

@@ -22,6 +22,10 @@ public class BreachControl : MonoBehaviour
     public float centerMin = -0.1f;
     public float centerMax = 0.1f;
 
+    public GameObject BreachDoor;
+
+    float speed = 1f;
+
     // Start is called before the first frame update
    
     void Start()
@@ -29,6 +33,7 @@ public class BreachControl : MonoBehaviour
         hinge = GetComponent<HingeJoint>();
         limit = hinge.limits;
         spring = hinge.spring;
+        BreachDoor = GameObject.Find("BreachDoor");
     }
 
     void Update()
@@ -56,6 +61,8 @@ public class BreachControl : MonoBehaviour
             bw = true;
             fw = false;
             center = false;
+
+        //BreachDoor.transform.Translate(Mathf.Clamp(speed,-5f,6f), BreachDoor.transform);
             // Debug.Log("down" + bw);
             return;
         }
@@ -65,6 +72,9 @@ public class BreachControl : MonoBehaviour
             fw = true;
             center = false;
             // Debug.Log("up" + fw);
+
+            // transform.Translate(Vector3.up * Time.deltaTime, BreachDoor.transform);
+
             return;
         }
 
