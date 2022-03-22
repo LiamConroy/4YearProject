@@ -7,6 +7,14 @@ public class Fire : MonoBehaviour
 
     public GameObject XROrigin;
     public static bool fired;
+    public Transform muzzle;
+    public GameObject shell;
+    float x;
+    float y;
+    float z;
+
+    public float projectileSpeed = 10f;
+
 
     void Start(){
         XROrigin = GameObject.Find("XR Origin");
@@ -19,6 +27,11 @@ public class Fire : MonoBehaviour
     if((Maingun.ammoLoaded && RoundDetection.shell.transform.CompareTag("Loaded")) && (BreachControl.fw && !BreachControl.bw)){
         if (other.transform.CompareTag("GameController") && (!fired)){
         Debug.Log("Pew");
+        GameObject currentShell = Instantiate(shell, muzzle.position, gameObject.transform.rotation);
+        currentShell.transform.Rotate(new Vector3(90,0,0));
+
+        currentShell.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed,ForceMode.Impulse);
+
         fired = true;
         // RoundDetection.shell = RoundDetection.shell.gameObject.tag = "Spent";
         RoundDetection.shell.gameObject.tag = "Spent";

@@ -7,7 +7,8 @@ public class LeverManager : MonoBehaviour
     // public Vector3 rotation;
     public float turnSpeed;
     public static GameObject Tank;
-    public float rotationSpeed = 5000f;
+    public float rotationSpeed = 1000f;
+    public float driveSpeed = 2f;
     public Quaternion start;
     void Start()
     {
