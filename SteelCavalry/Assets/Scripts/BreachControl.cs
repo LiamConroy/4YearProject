@@ -22,7 +22,11 @@ public class BreachControl : MonoBehaviour
     public float centerMin = -0.1f;
     public float centerMax = 0.1f;
 
-    public GameObject BreachDoor;
+    // public GameObject BreachDoor;
+
+    [SerializeField] private Animator BreachDoor;
+    [SerializeField] private string open = "BreachDoorOpen";
+    [SerializeField] private string close = "BreachDoorClose";
 
     float speed = 1f;
 
@@ -33,7 +37,7 @@ public class BreachControl : MonoBehaviour
         hinge = GetComponent<HingeJoint>();
         limit = hinge.limits;
         spring = hinge.spring;
-        BreachDoor = GameObject.Find("BreachDoor");
+        // BreachDoor = GameObject.Find("BreachDoor");
     }
 
     void Update()
@@ -62,9 +66,13 @@ public class BreachControl : MonoBehaviour
             fw = false;
             center = false;
 
-        //BreachDoor.transform.Translate(Mathf.Clamp(speed,-5f,6f), BreachDoor.transform);
             // Debug.Log("down" + bw);
-            return;
+            BreachDoor.Play(close, 0, 0.0f);
+
+
+        //BreachDoor.transform.Translate(Mathf.Clamp(speed,-5f,6f), BreachDoor.transform);
+            
+            // return;
         }
 
         if(angle <= limit.max && angle > centerMax){
@@ -73,9 +81,10 @@ public class BreachControl : MonoBehaviour
             center = false;
             // Debug.Log("up" + fw);
 
+            BreachDoor.Play(open, 0, 0.0f);
             // transform.Translate(Vector3.up * Time.deltaTime, BreachDoor.transform);
 
-            return;
+            // return;
         }
 
 

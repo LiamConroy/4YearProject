@@ -23,6 +23,7 @@ public class Maingun : MonoBehaviour
         Fire.fired = false;
         Debug.Log(ammoLoaded);
         Debug.Log("fired: " + Fire.fired);
+        // Fire.muzzleFlash.SetActive(false);
     }
 
     public void unloaded(){
