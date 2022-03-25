@@ -10,6 +10,7 @@ public class Fire : MonoBehaviour
     public Transform muzzle;
     public GameObject shell;
     public GameObject muzzleFlash;
+    public AudioSource m_bang;
    
     [SerializeField] private Animator recoil;
     [SerializeField] private string recoilPlay = "RecoilAnim";
@@ -45,6 +46,7 @@ public class Fire : MonoBehaviour
         recoil.Play(recoilPlay,0,0.0f);
         recoil.speed = 2.5f;
         muzzleFlash.SetActive(true);
+        m_bang.Play();   
         
         RoundDetection.shell.gameObject.tag = "Spent";
         fired = true;

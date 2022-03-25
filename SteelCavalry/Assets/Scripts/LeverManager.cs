@@ -9,13 +9,16 @@ public class LeverManager : MonoBehaviour
     public static GameObject Tank;
     public float rotationSpeed = 1000f;
     public float driveSpeed = 2f;
-    public Quaternion start;
+    // public Quaternion start;
+    public AudioSource m_engine;
+    public AudioSource m_engineIdle;
     void Start()
     {
         //  Lf = FindObjectOfType<LeftLever>();
         //  Rf = FindObjectOfType<RightLever>();    
         Tank = GameObject.Find("TankCenter");
-        start = transform.rotation;
+        
+        // start = transform.rotation;
         
     }
 
@@ -23,36 +26,46 @@ public class LeverManager : MonoBehaviour
     void Update()
     {
 
-        //  Vector3 bruh = new Vector3(x, 0f, z); 
+        m_engineIdle.Play();
         direction();
     }
 
     public void direction(){
 
         if((LeftLever.center && RightLever.center) && (!RightLever.grabbed && !LeftLever.grabbed)){
-           
+            
         }
 
         if((LeftLever.fw && RightLever.fw) && (!LeftLever.center && !RightLever.center)){
             // Debug.Log("forward");
             transform.Translate(Vector3.forward * Time.deltaTime, Tank.transform);
+            // m_engine.Play();
+            m_engineIdle.Stop(); 
         }
 
         if((LeftLever.bw && RightLever.bw) && (!LeftLever.center && !RightLever.center)){
             // Debug.Log("backward");
             transform.Translate(Vector3.back * Time.deltaTime, Tank.transform);
+            // m_engine.Play(); 
+             m_engineIdle.Stop(); 
+            
         }
 
         if((LeftLever.fw && RightLever.bw) && (!LeftLever.center && !RightLever.center)){
             Debug.Log("RightTurn");
             // Vector3 rotateVector = rotation;
             Tank.transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime, Space.Self);
+            // m_engine.Play(); 
+             m_engineIdle.Stop(); 
             // transform.RotateAround(Tank.transform.position, Vector3.up, rotationSpeed * Time.deltaTime);
         }
 
         if((LeftLever.bw && RightLever.fw) && (!LeftLever.center && !RightLever.center)){
             Debug.Log("LeftTurn");
             Tank.transform.Rotate(Vector3.down, rotationSpeed * Time.deltaTime, Space.Self);
+            // m_engine.Play(); 
+             m_engineIdle.Stop(); 
+            
         }
 
         // else if(LeftLever.bw && RightLever.fw){
