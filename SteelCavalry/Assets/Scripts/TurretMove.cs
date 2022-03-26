@@ -45,7 +45,7 @@ public class TurretMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        turret = GameObject.Find("TurretCenter");
+        turret = GameObject.Find("TurretBody");
         body = GetComponent<Rigidbody>();
         hinge = GetComponent<HingeJoint>();
         limit = hinge.limits;
