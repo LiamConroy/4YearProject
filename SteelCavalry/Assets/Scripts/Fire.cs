@@ -33,8 +33,8 @@ public class Fire : MonoBehaviour
     void OnTriggerEnter(Collider other){
         
     muzzleFlash.SetActive(false);
-
-    if((Maingun.ammoLoaded && RoundDetection.shell.transform.CompareTag("Loaded")) && (BreachControl.fw && !BreachControl.bw)){
+//  && (BreachControl.fw && !BreachControl.bw)
+    if((Maingun.ammoLoaded && RoundDetection.shell.transform.CompareTag("Loaded"))){
         if (other.transform.CompareTag("GameController") && (!fired)){
 
         Debug.Log("Pew");

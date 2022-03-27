@@ -7,16 +7,22 @@ public class LeverManager : MonoBehaviour
     // public Vector3 rotation;
     public float turnSpeed;
     public static GameObject Tank;
-    public float rotationSpeed = 1000f;
+    public float rotationSpeed = 5f;
     public float driveSpeed = 2f;
+
+    public Rigidbody tankRB;
     // public Quaternion start;
     public AudioSource m_engine;
     public AudioSource m_engineIdle;
+
+    Vector3 eulerVelocity;
     void Start()
     {
         //  Lf = FindObjectOfType<LeftLever>();
         //  Rf = FindObjectOfType<RightLever>();    
-        Tank = GameObject.Find("TankCenter");
+        // tankRB = GetComponent<Rigidbody>(); 
+        eulerVelocity = new Vector3(0,20,0);
+
         
         // start = transform.rotation;
         
@@ -26,7 +32,7 @@ public class LeverManager : MonoBehaviour
     void Update()
     {
 
-        m_engineIdle.Play();
+        // m_engineIdle.Play();
         direction();
     }
 
@@ -38,33 +44,40 @@ public class LeverManager : MonoBehaviour
 
         if((LeftLever.fw && RightLever.fw) && (!LeftLever.center && !RightLever.center)){
             // Debug.Log("forward");
-            transform.Translate(Vector3.forward * Time.deltaTime, Tank.transform);
+            // transform.Translate(Vector3.forward * Time.deltaTime, Tank.transform);
+            tankRB.MovePosition(transform.position + transform.forward * Time.deltaTime * driveSpeed);
             // m_engine.Play();
-            m_engineIdle.Stop(); 
+            // m_engineIdle.Stop(); 
         }
 
         if((LeftLever.bw && RightLever.bw) && (!LeftLever.center && !RightLever.center)){
             // Debug.Log("backward");
-            transform.Translate(Vector3.back * Time.deltaTime, Tank.transform);
+            // transform.Translate(Vector3.back * Time.deltaTime, Tank.transform);
+            tankRB.MovePosition(transform.position - transform.forward * Time.deltaTime * driveSpeed); 
             // m_engine.Play(); 
-             m_engineIdle.Stop(); 
+            //  m_engineIdle.Stop(); 
             
         }
 
         if((LeftLever.fw && RightLever.bw) && (!LeftLever.center && !RightLever.center)){
             Debug.Log("RightTurn");
             // Vector3 rotateVector = rotation;
-            Tank.transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime, Space.Self);
+            // Tank.transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime, Space.Self);
+            
+            Quaternion rotation = Quaternion.Euler(eulerVelocity * Time.fixedDeltaTime);
+            tankRB.MoveRotation( tankRB.rotation * rotation);
             // m_engine.Play(); 
-             m_engineIdle.Stop(); 
+            //  m_engineIdle.Stop(); 
             // transform.RotateAround(Tank.transform.position, Vector3.up, rotationSpeed * Time.deltaTime);
         }
 
         if((LeftLever.bw && RightLever.fw) && (!LeftLever.center && !RightLever.center)){
             Debug.Log("LeftTurn");
-            Tank.transform.Rotate(Vector3.down, rotationSpeed * Time.deltaTime, Space.Self);
+            Quaternion rotation = Quaternion.Euler(-eulerVelocity * Time.fixedDeltaTime);
+            tankRB.MoveRotation( tankRB.rotation * rotation);
+            // Tank.transform.Rotate(Vector3.down, rotationSpeed * Time.deltaTime, Space.Self);
             // m_engine.Play(); 
-             m_engineIdle.Stop(); 
+            //  m_engineIdle.Stop(); 
             
         }
 
