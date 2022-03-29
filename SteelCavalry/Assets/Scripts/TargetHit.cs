@@ -5,6 +5,10 @@ using UnityEngine;
 public class TargetHit : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    public GameObject projectile;
+
+    public GameObject explosion;
     void Start()
     {
         
@@ -17,8 +21,14 @@ public class TargetHit : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other){
-        if (other.transform.CompareTag("Projectile")){
-        Debug.Log("Hit!");
+        if (other.transform.CompareTag("Enemy")){
+            Debug.Log("Hit");
+            Destroy(projectile);      
+
+        }
+
+        if (other.transform.CompareTag("Ground")){
+            explosion.SetActive(true);
         }
 
     }

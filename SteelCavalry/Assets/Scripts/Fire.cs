@@ -9,6 +9,9 @@ public class Fire : MonoBehaviour
     public static bool fired;
     public Transform muzzle;
     public GameObject shell;
+    
+    public GameObject spentShell;
+    public Transform breach;
     public GameObject muzzleFlash;
     public AudioSource m_bang;
    
@@ -46,8 +49,11 @@ public class Fire : MonoBehaviour
         recoil.Play(recoilPlay,0,0.0f);
         recoil.speed = 2.5f;
         muzzleFlash.SetActive(true);
-        m_bang.Play();   
-        
+        m_bang.Play();
+
+        Destroy(RoundDetection.shell);
+        GameObject emptyShell = Instantiate(spentShell, breach.position, gameObject.transform.rotation);   
+        emptyShell.transform.Rotate(new Vector3(0,0,90));   
         RoundDetection.shell.gameObject.tag = "Spent";
         fired = true;
         // RoundDetection.shell = RoundDetection.shell.gameObject.tag = "Spent";

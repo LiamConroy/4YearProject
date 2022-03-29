@@ -25,7 +25,7 @@ public class BarrelMove : MonoBehaviour
 
     public GameObject barrel;
 
-    public float rotationSpeed = 50f;
+    public float rotationSpeed = 20f;
 
 
     
