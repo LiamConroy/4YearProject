@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2269313150075031207}
   m_Layer: 0
   m_Name: Shell(Fired)
-  m_TagString: Loaded
+  m_TagString: Spent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

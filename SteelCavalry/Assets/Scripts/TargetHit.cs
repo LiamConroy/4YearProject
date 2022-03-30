@@ -20,7 +20,7 @@ public class TargetHit : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider other){
+     IEnumerator OnTriggerEnter(Collider other){
         if (other.transform.CompareTag("Enemy")){
             Debug.Log("Hit");
             Destroy(projectile);      
@@ -29,7 +29,11 @@ public class TargetHit : MonoBehaviour
 
         if (other.transform.CompareTag("Ground")){
             explosion.SetActive(true);
+            yield return new WaitForSeconds(1);
+            Destroy(projectile);
         }
 
     }
+
+    
 }

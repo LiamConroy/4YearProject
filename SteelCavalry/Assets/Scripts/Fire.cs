@@ -39,6 +39,7 @@ public class Fire : MonoBehaviour
 //  && (BreachControl.fw && !BreachControl.bw)
     if((Maingun.ammoLoaded && RoundDetection.shell.transform.CompareTag("Loaded"))){
         if (other.transform.CompareTag("GameController") && (!fired)){
+        fired = true;
 
         Debug.Log("Pew");
 
@@ -50,7 +51,7 @@ public class Fire : MonoBehaviour
         recoil.speed = 2.5f;
         muzzleFlash.SetActive(true);
         m_bang.Play();
-
+        
         Destroy(RoundDetection.shell);
         GameObject emptyShell = Instantiate(spentShell, breach.position, gameObject.transform.rotation);   
         emptyShell.transform.Rotate(new Vector3(0,0,90));   
