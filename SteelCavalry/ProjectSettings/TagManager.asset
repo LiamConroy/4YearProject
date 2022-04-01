@@ -10,6 +10,9 @@ TagManager:
   - FxTemporaire
   - Enemy
   - Ground
+  - next
+  - back
+  - position
   layers:
   - Default
   - TransparentFX
@@ -18,7 +21,7 @@ TagManager:
   - Water
   - UI
   - Button
-  - 
+  - PosUI
   - 
   - 
   - 
