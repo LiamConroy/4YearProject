@@ -25,20 +25,15 @@ public class TargetHit : MonoBehaviour
      IEnumerator OnTriggerEnter(Collider other){
         if (other.transform.CompareTag("Enemy")){
             Debug.Log("Hit");
-            projectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            projectile.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             // enemyHitExp.SetActive(true);
-
-            yield return new WaitForSeconds(1);
-            // Destroy(projectile);      
-
+            Destroy(projectile);      
         }
 
         if (other.transform.CompareTag("Ground")){
-            // explosion.SetActive(true);
-            // yield return new WaitForSeconds(1);
+            explosion.SetActive(true);
+            yield return new WaitForSeconds(1);
             Debug.Log("Ground Hit");
-            // Destroy(projectile);
+            Destroy(projectile);
         }
 
     }
