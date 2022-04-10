@@ -12,8 +12,8 @@ public class LeverManager : MonoBehaviour
 
     public Rigidbody tankRB;
     // public Quaternion start;
-    public AudioSource m_engine;
-    public AudioSource m_engineIdle;
+    public GameObject Engine;
+    public GameObject EngineIdle;
 
     Vector3 eulerVelocity;
     void Start()
@@ -32,19 +32,22 @@ public class LeverManager : MonoBehaviour
     void Update()
     {
 
-        // m_engineIdle.Play();
+        
         direction();
     }
 
     public void direction(){
 
         if((LeftLever.center && RightLever.center) && (!RightLever.grabbed && !LeftLever.grabbed)){
-            
+            Engine.SetActive(false);
+            EngineIdle.SetActive(true);             
         }
 
         if((LeftLever.fw && RightLever.fw) && (!LeftLever.center && !RightLever.center)){
             // Debug.Log("forward");
             // transform.Translate(Vector3.forward * Time.deltaTime, Tank.transform);
+            Engine.SetActive(true);
+            EngineIdle.SetActive(false);       
             tankRB.MovePosition(transform.position + transform.forward * Time.deltaTime * driveSpeed);
             // m_engine.Play();
             // m_engineIdle.Stop(); 
@@ -53,6 +56,8 @@ public class LeverManager : MonoBehaviour
         if((LeftLever.bw && RightLever.bw) && (!LeftLever.center && !RightLever.center)){
             // Debug.Log("backward");
             // transform.Translate(Vector3.back * Time.deltaTime, Tank.transform);
+            Engine.SetActive(true);
+            EngineIdle.SetActive(false);   
             tankRB.MovePosition(transform.position - transform.forward * Time.deltaTime * driveSpeed); 
             // m_engine.Play(); 
             //  m_engineIdle.Stop(); 
@@ -63,6 +68,8 @@ public class LeverManager : MonoBehaviour
             Debug.Log("RightTurn");
             // Vector3 rotateVector = rotation;
             // Tank.transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime, Space.Self);
+            Engine.SetActive(true);
+            EngineIdle.SetActive(false);   
             
             Quaternion rotation = Quaternion.Euler(eulerVelocity * Time.fixedDeltaTime);
             tankRB.MoveRotation( tankRB.rotation * rotation);
@@ -72,6 +79,8 @@ public class LeverManager : MonoBehaviour
         }
 
         if((LeftLever.bw && RightLever.fw) && (!LeftLever.center && !RightLever.center)){
+            Engine.SetActive(true);
+            EngineIdle.SetActive(false);   
             Debug.Log("LeftTurn");
             Quaternion rotation = Quaternion.Euler(-eulerVelocity * Time.fixedDeltaTime);
             tankRB.MoveRotation( tankRB.rotation * rotation);
