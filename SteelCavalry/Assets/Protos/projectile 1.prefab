@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 299606244451160991}
   - component: {fileID: 299606244451160980}
   - component: {fileID: 7406817398341034271}
+  - component: {fileID: 6979326717555220911}
   m_Layer: 0
   m_Name: projectile 1
   m_TagString: Projectile
@@ -1228,6 +1229,20 @@ MonoBehaviour:
   projectile: {fileID: 299606244451160981}
   explosion: {fileID: 4654739216741921299}
   enemyHitExp: {fileID: 2889932776582182859}
+--- !u!136 &6979326717555220911
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299606244451160981}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.07
+  m_Height: 0.27612525
+  m_Direction: 1
+  m_Center: {x: -0.07, y: 0.06193737, z: 0}
 --- !u!1 &2889932776582182849
 GameObject:
   m_ObjectHideFlags: 0

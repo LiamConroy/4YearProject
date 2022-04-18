@@ -11,6 +11,7 @@ public class TargetHit : MonoBehaviour
     public GameObject explosion;
 
     public GameObject enemyHitExp;
+    private GameObject Enemy;
     void Start()
     {
         
@@ -23,10 +24,14 @@ public class TargetHit : MonoBehaviour
     }
 
      IEnumerator OnTriggerEnter(Collider other){
+         projectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
+         projectile.GetComponent<Rigidbody>().angularVelocity = Vector3.zero; 
         if (other.transform.CompareTag("Enemy")){
             Debug.Log("Hit");
-            // enemyHitExp.SetActive(true);
-            Destroy(projectile);      
+            enemyHitExp.SetActive(true);
+            yield return new WaitForSeconds(0.01f);
+            Destroy(projectile);
+            // Enemy = GameObject.Find(other.gameObject.name);   
         }
 
         if (other.transform.CompareTag("Ground")){

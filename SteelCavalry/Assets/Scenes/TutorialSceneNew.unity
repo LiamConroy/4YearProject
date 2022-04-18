@@ -46671,6 +46671,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1182476734}
+    - target: {fileID: 7893303309180100963, guid: ffb5f420dca0f20409085ae4a91414c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7893303309185298116, guid: ffb5f420dca0f20409085ae4a91414c2, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -46695,6 +46699,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 36464443}
+    - target: {fileID: 7893303309234804830, guid: ffb5f420dca0f20409085ae4a91414c2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7893303309307432472, guid: ffb5f420dca0f20409085ae4a91414c2, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -46731,6 +46739,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 631030962}
+    - target: {fileID: 7893303309396092273, guid: ffb5f420dca0f20409085ae4a91414c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7893303309424044913, guid: ffb5f420dca0f20409085ae4a91414c2, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -47055,6 +47067,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 526994304}
+    - target: {fileID: 7893303310881018219, guid: ffb5f420dca0f20409085ae4a91414c2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7893303310913238745, guid: ffb5f420dca0f20409085ae4a91414c2, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -47091,6 +47107,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 936260205}
+    - target: {fileID: 7893303311023317497, guid: ffb5f420dca0f20409085ae4a91414c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7893303311023317501, guid: ffb5f420dca0f20409085ae4a91414c2, type: 3}
       propertyPath: m_Camera
       value: 
