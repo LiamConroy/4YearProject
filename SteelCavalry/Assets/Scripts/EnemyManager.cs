@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class EnemyManager : MonoBehaviour
 
     public TMP_Text Current;
     public TMP_Text Max;
+    public GameObject Counter;
+    public GameObject YouWin;
     void Start()
     {
         EnemyCountMax = Enemys.Length;
@@ -21,7 +24,21 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {          
-        Debug.Log(CurrentEnemyCount+"/"+EnemyCountMax);
+        // Debug.Log(CurrentEnemyCount+"/"+EnemyCountMax);
         Current.text = CurrentEnemyCount.ToString();
+        // SwitchSceneWait();
+        if(CurrentEnemyCount == 0){
+            StartCoroutine(SwitchSceneWait());
+        }
     }
+
+
+    IEnumerator SwitchSceneWait(){
+        Counter.SetActive(false);
+        YouWin.SetActive(true);
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("MainMenu");
+    }
+    
+
 }

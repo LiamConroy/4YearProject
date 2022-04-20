@@ -53,6 +53,7 @@ public class Fire : MonoBehaviour
         m_bang.Play();
         
         Destroy(RoundDetection.shell);
+        AmmoManager.CurrentAmmo--;
         GameObject emptyShell = Instantiate(spentShell, breach.position, gameObject.transform.rotation);   
         emptyShell.transform.Rotate(new Vector3(0,0,90));   
         RoundDetection.shell.gameObject.tag = "Spent";
