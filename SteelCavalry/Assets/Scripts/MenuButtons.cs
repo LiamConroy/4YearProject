@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 public class MenuButtons : MonoBehaviour
 {
     // Start is called before the first frame update
+    Scene SceneName;
     void Start()
     {
-          
+       SceneName = SceneManager.GetActiveScene();   
     }
 
     // Update is called once per frame
@@ -32,6 +33,10 @@ public class MenuButtons : MonoBehaviour
     public void Close(){
         Application.Quit();
         Debug.Log("Game Quit");
+    }
+
+    public void Restart(){
+        SceneManager.LoadScene(SceneName.name);
     }
 
 }
