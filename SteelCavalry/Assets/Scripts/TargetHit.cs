@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,8 +37,14 @@ public class TargetHit : MonoBehaviour
 
         if (other.transform.CompareTag("Ground")){
             explosion.SetActive(true);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.05f);
             Debug.Log("Ground Hit");
+            Destroy(projectile);
+        }
+
+        else{
+            enemyHitExp.SetActive(true);
+            yield return new WaitForSeconds(0.05f);
             Destroy(projectile);
         }
 
