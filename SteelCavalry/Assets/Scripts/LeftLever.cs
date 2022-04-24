@@ -25,11 +25,6 @@ public class LeftLever : MonoBehaviour
     public float centerMin = -0.1f;
     public float centerMax = 0.1f;
 
-
-    
-    // public float startAngle = 0.3174578f;
-
-    // Start is called before the first frame update
     void Start()
     {
         hinge = GetComponent<HingeJoint>();
