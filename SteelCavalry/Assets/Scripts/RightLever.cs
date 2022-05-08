@@ -39,8 +39,6 @@ public class RightLever : MonoBehaviour
 
     void Update()
     {
-        // Debug.Log("Start");
-        // angle();
         
         angle = hinge.angle;
         // Debug.Log(limit.min);
@@ -51,19 +49,23 @@ public class RightLever : MonoBehaviour
 
     public void direction(){
 
+    //fw,bw and center bools are all checked in levermanager to determine tank direction
+    //checks if the lever isnt being grabbed, if true and angle is centered, set center to true
      if(!grabbed){
         if(angle > centerMin && angle < centerMax){
             // Debug.Log("center");
             center = true;
         }
      }
+        //checks if lever is backwards
         if(angle >= limit.min && angle < centerMin){
             bw = true;
             fw = false;
             center = false;
             // Debug.Log("backwards" + bw);
-        }
 
+        }
+        //checks if lever is forwards
         if(angle <= limit.max && angle > centerMax){
             bw = false;
             fw = true;
@@ -74,10 +76,11 @@ public class RightLever : MonoBehaviour
 
     }
 
+    //function is triggered when lever is grabbed and held
     public void held(){
         grabbed = true;
     }
-
+    //fucntion is triggered when lever is released
     public void released(){
         grabbed = false;
     }

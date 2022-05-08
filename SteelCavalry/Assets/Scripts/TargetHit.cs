@@ -25,8 +25,10 @@ public class TargetHit : MonoBehaviour
     }
 
      IEnumerator OnTriggerEnter(Collider other){
+        //stops all forces acting on projectile once it collides
          projectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
          projectile.GetComponent<Rigidbody>().angularVelocity = Vector3.zero; 
+         //if tag is enemy, play explosion and destroy object
         if (other.transform.CompareTag("Enemy")){
             Debug.Log("Hit");
             enemyHitExp.SetActive(true);
@@ -34,7 +36,7 @@ public class TargetHit : MonoBehaviour
             Destroy(projectile);
             // Enemy = GameObject.Find(other.gameObject.name);   
         }
-
+        //if tag is ground, play explosion and destroy object
         if (other.transform.CompareTag("Ground")){
             explosion.SetActive(true);
             yield return new WaitForSeconds(0.05f);

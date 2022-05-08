@@ -20,11 +20,13 @@ public class AmmoManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if player ammo reaches 0, start function that switches scene
          if(CurrentAmmo == 0){
             StartCoroutine(SwitchSceneWait());
         }   
     }
 
+    
     IEnumerator SwitchSceneWait(){
         YouLose.SetActive(true);
         Counter.SetActive(false);

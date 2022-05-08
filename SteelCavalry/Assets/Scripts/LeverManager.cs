@@ -18,14 +18,9 @@ public class LeverManager : MonoBehaviour
     Vector3 eulerVelocity;
     void Start()
     {
-        //  Lf = FindObjectOfType<LeftLever>();
-        //  Rf = FindObjectOfType<RightLever>();    
-        // tankRB = GetComponent<Rigidbody>(); 
+   
         eulerVelocity = new Vector3(0,20,0);
-
-        
-        // start = transform.rotation;
-        
+        // start = transform.rotation; 
     }
 
     // Update is called once per frame
@@ -36,13 +31,16 @@ public class LeverManager : MonoBehaviour
         direction();
     }
 
+    //bools that correspond to positions of levers imported from LeftLever and RightLever scripts
     public void direction(){
 
+        //if tank isnt moving set engine idle to active
         if((LeftLever.center && RightLever.center) && (!RightLever.grabbed && !LeftLever.grabbed)){
             Engine.SetActive(false);
             EngineIdle.SetActive(true);             
         }
 
+        //checks if both levers are forward and not centered, if true moves forward
         if((LeftLever.fw && RightLever.fw) && (!LeftLever.center && !RightLever.center)){
             // Debug.Log("forward");
             // transform.Translate(Vector3.forward * Time.deltaTime, Tank.transform);
@@ -53,6 +51,7 @@ public class LeverManager : MonoBehaviour
             // m_engineIdle.Stop(); 
         }
 
+        //checks if both levers are backward and not centered, if true moves backward
         if((LeftLever.bw && RightLever.bw) && (!LeftLever.center && !RightLever.center)){
             // Debug.Log("backward");
             // transform.Translate(Vector3.back * Time.deltaTime, Tank.transform);
@@ -64,6 +63,7 @@ public class LeverManager : MonoBehaviour
             
         }
 
+        //checks if left lever is forward and Right lever is backward and neither are centered, if true rotate right
         if((LeftLever.fw && RightLever.bw) && (!LeftLever.center && !RightLever.center)){
             Debug.Log("RightTurn");
             // Vector3 rotateVector = rotation;
@@ -73,11 +73,10 @@ public class LeverManager : MonoBehaviour
             
             Quaternion rotation = Quaternion.Euler(eulerVelocity * Time.fixedDeltaTime);
             tankRB.MoveRotation( tankRB.rotation * rotation);
-            // m_engine.Play(); 
-            //  m_engineIdle.Stop(); 
-            // transform.RotateAround(Tank.transform.position, Vector3.up, rotationSpeed * Time.deltaTime);
+        
         }
 
+        //checks if right lever is forward and left lever is backward and neither are centered, if true rotate left
         if((LeftLever.bw && RightLever.fw) && (!LeftLever.center && !RightLever.center)){
             Engine.SetActive(true);
             EngineIdle.SetActive(false);   
@@ -89,14 +88,6 @@ public class LeverManager : MonoBehaviour
             //  m_engineIdle.Stop(); 
             
         }
-
-        // else if(LeftLever.bw && RightLever.fw){
-        //     Debug.Log("left");
-        // }
-
-        // else if(LeftLever.fw && RightLever.bw){
-        //     Debug.Log("right");
-        // }
 
         else{
             // Debug.Log("Bruh");

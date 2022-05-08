@@ -43,15 +43,22 @@ public class Fire : MonoBehaviour
 
         Debug.Log("Pew");
 
+        //spawns new projectile
+        //rotates it to face correct direction
+        //applies forward force to rigidbody
         GameObject currentShell = Instantiate(shell, muzzle.position, gameObject.transform.rotation);
         currentShell.transform.Rotate(new Vector3(90,0,0));
         currentShell.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed,ForceMode.Impulse);
 
+        //play recoil animation, muzzleflash and sound effect
         recoil.Play(recoilPlay,0,0.0f);
         recoil.speed = 2.5f;
         muzzleFlash.SetActive(true);
         m_bang.Play();
-        
+
+        //Destroy shell object in breach
+        //Spawn new shell object(fired shell prefab)
+        //set fired to true
         Destroy(RoundDetection.shell);
         AmmoManager.CurrentAmmo--;
         GameObject emptyShell = Instantiate(spentShell, breach.position, gameObject.transform.rotation);   
